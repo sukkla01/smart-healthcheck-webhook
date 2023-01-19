@@ -379,6 +379,7 @@ async function reply(reply_token, type, userId) {
     let reply_tmp
     if (type == 1) {
         reply_tmp = [flexResult(userId)]
+        console.log('result')
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1(), imageList2(), imageList3()]
@@ -892,7 +893,7 @@ async function createImageDoctor(tdate) {
 
 // health check
 async function flexResult(userID) {
-
+    console.log(userID + '-------- 896')
     let tname =''
     let vn =''
     let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
@@ -919,6 +920,7 @@ async function flexResult(userID) {
     ]
 
     let dataShow = []
+    console.log(dataDoctor + '-------- 923')
 
     dataDoctor.map((item,i)=>{
         dataShow.push({
