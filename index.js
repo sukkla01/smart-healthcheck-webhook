@@ -1152,7 +1152,7 @@ function flexMultiDoctor2() {
                 {
                     "type": "uri",
                     "label": "รายละเอียด",
-                    "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${vn}`
+                    "uri": url + item.image
                 }
             ]
         })
