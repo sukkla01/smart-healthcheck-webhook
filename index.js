@@ -378,7 +378,7 @@ async function reply(reply_token, type, userID) {
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [ await FlexResult(userID)]
+        reply_tmp = [await FlexResult(userID)]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1(), imageList2(), imageList3()]
@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
-const  FlexResult = async (userID) => {
+const FlexResult = async (userID) => {
     let tname = ''
     let vn = ''
     let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
@@ -1106,22 +1106,20 @@ const  FlexResult = async (userID) => {
     WHERE user_id = '${userID}'
     ORDER BY vstdate DESC
     limit 1     `
-    try {
-        const response = await db.query(sql)
-        console.log(response.rows[0])
-        console.log(response.rows[0].tname)
-        console.log(response.rows[0].vn)
-        // if (response.rows.length > 0) {
-        //     response.rows.map((item, i) => {
-        //         console.log(item)
-        //         // createImage(item)
-        //         tname = item.tname
-        //         vn = item.vn
-        //     })
-        // }
-    } catch (error) {
-        console.log(error)
-    }
+
+    const response = await db.query(sql)
+    console.log(response.rows[0])
+    console.log(response.rows[0].tname)
+    console.log(response.rows[0].vn)
+    // if (response.rows.length > 0) {
+    //     response.rows.map((item, i) => {
+    //         console.log(item)
+    //         // createImage(item)
+    //         tname = item.tname
+    //         vn = item.vn
+    //     })
+    // }
+
 
     console.log(tname + '-------')
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
@@ -1139,7 +1137,7 @@ const  FlexResult = async (userID) => {
         "defaultAction": {
             "type": "uri",
             "label": "View detail",
-            "uri":'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
+            "uri": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
         },
         "actions": [
             {
