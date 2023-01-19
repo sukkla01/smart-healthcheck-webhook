@@ -1113,11 +1113,11 @@ const  FlexResult =  (userID) => {
             tname = item.rows[0].tname
             vn = item.rows[0].vn
 
-            return item.rows[0]
-
+            // return item.rows[0]
+            sendBot(item.rows[0])
 
         });
-        console.log(response)
+        // console.log(response)
         // if (response.rows.length > 0) {
         //     response.rows.map((item, i) => {
         //         console.log(item)
@@ -1130,45 +1130,50 @@ const  FlexResult =  (userID) => {
         console.log(error)
     }
 
-    console.log(tname + '-------')
-    let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
-    let dataDoctor = [
-        { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
-    ]
 
-    let dataShow = []
-
-    dataShow.push({
-        "thumbnailImageUrl": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg',
-        "imageBackgroundColor": "#FFFFFF",
-        "title": 'รายงานผลการตรวจสุขภาพ',
-        "text": 'ssss',
-        "defaultAction": {
-            "type": "uri",
-            "label": "View detail",
-            "uri":'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
-        },
-        "actions": [
-            {
-                "type": "uri",
-                "label": "รายละเอียด",
-                "uri": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
-            }
+    const sendBot =(data)=>{
+        console.log(data.tname + '-------')
+        let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
+        let dataDoctor = [
+            { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
         ]
-    })
-
-    let data = {
-        "type": "template",
-        "altText": "this is a carousel template",
-        "template": {
-            "type": "carousel",
-            "columns": dataShow,
-            "imageAspectRatio": "rectangle",
-            "imageSize": "cover"
+    
+        let dataShow = []
+    
+        dataShow.push({
+            "thumbnailImageUrl": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg',
+            "imageBackgroundColor": "#FFFFFF",
+            "title": 'รายงานผลการตรวจสุขภาพ',
+            "text": 'ssss',
+            "defaultAction": {
+                "type": "uri",
+                "label": "View detail",
+                "uri":'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
+            },
+            "actions": [
+                {
+                    "type": "uri",
+                    "label": "รายละเอียด",
+                    "uri": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
+                }
+            ]
+        })
+    
+        let data = {
+            "type": "template",
+            "altText": "this is a carousel template",
+            "template": {
+                "type": "carousel",
+                "columns": dataShow,
+                "imageAspectRatio": "rectangle",
+                "imageSize": "cover"
+            }
         }
+    
+        return data
     }
 
-    return data
+    
 }
 
 
