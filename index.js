@@ -93,6 +93,9 @@ app.post('/confirm', async (req, res) => {
         if (body) console.log(body)
     })
 
+
+    const resss = await db.query(`UPDATE healthcheck_head  SET type_sent = 1 WHERE uuid ='${body.uuid}'   `)
+
     res.status(200);
     res.send('success');
     
