@@ -28,79 +28,70 @@ app.post('/confirm', async (req, res) => {
 
     let { body } = req
     console.log(body)
-    // let sql = `SELECT hn,nextdate,r.queue,name 
-    // FROM diligent_queue_reserve   r
-    // LEFT JOIN diligent_queue_dep d ON d.id = r.dep::int
-    // WHERE vn_reserve = '${vn}'      `
-    // const response = await db.query(sql);
-    // if (response.rows.length > 0) {
-    //     dataQuery = response.rows
-    // }
+   
 
+    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
+    FROM healthcheck_register r
+    LEFT JOIN patient p ON p.cid = r.cid
+    LEFT JOIN ovst o ON o.hn = p.hn
+    WHERE user_id = '${body.userid}'
+    ORDER BY vstdate DESC
+    limit 1     `
 
-    // let date = moment(dataQuery[0].nextdate).add(543, 'year').format('LL')
-    // let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
-    // FROM healthcheck_register r
-    // LEFT JOIN patient p ON p.cid = r.cid
-    // LEFT JOIN ovst o ON o.hn = p.hn
-    // WHERE user_id = '${body.userid}'
-    // ORDER BY vstdate DESC
-    // limit 1     `
+    const response = await db.query(sql)
 
-    // const response = await db.query(sql)
+    let dataShow = []
 
-    // let dataShow = []
+    dataShow.push({
+        "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
+        "imageBackgroundColor": "#FFFFFF",
+        "title": 'รายงานผลการตรวจสุขภาพ',
+        "text": response.rows[0].tname,
+        "defaultAction": {
+            "type": "uri",
+            "label": "View detail",
+            "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
+        },
+        "actions": [
+            {
+                "type": "uri",
+                "label": "คลิกดูรายละเอียด",
+                "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
+            }
+        ]
+    })
 
-    // dataShow.push({
-    //     "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
-    //     "imageBackgroundColor": "#FFFFFF",
-    //     "title": 'รายงานผลการตรวจสุขภาพ',
-    //     "text": response.rows[0].tname,
-    //     "defaultAction": {
-    //         "type": "uri",
-    //         "label": "View detail",
-    //         "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
-    //     },
-    //     "actions": [
-    //         {
-    //             "type": "uri",
-    //             "label": "คลิกดูรายละเอียด",
-    //             "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
-    //         }
-    //     ]
-    // })
-
-    // let data = {
-    //     to: body.userid,
-    //     messages: [
-    //         {
-    //             "type": "template",
-    //             "altText": "this is a carousel template",
-    //             "template": {
-    //                 "type": "carousel",
-    //                 "columns": dataShow,
-    //                 "imageAspectRatio": "rectangle",
-    //                 "imageSize": "cover"
-    //             }
-    //         }
-    //     ]
-    // }
-    // request({
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Authorization': `Bearer {${token}}`
-    //     },
-    //     url: 'https://api.line.me/v2/bot/message/push',
-    //     method: 'POST',
-    //     body: data,
-    //     json: true
-    // }, async function (err, res, body) {
-    //     if (err) console.log(err)
-    //     // if (res) {
-    //     //     console.log('success')
-    //     // }
-    //     if (body) console.log(body)
-    // })
+    let data = {
+        to: body.userid,
+        messages: [
+            {
+                "type": "template",
+                "altText": "this is a carousel template",
+                "template": {
+                    "type": "carousel",
+                    "columns": dataShow,
+                    "imageAspectRatio": "rectangle",
+                    "imageSize": "cover"
+                }
+            }
+        ]
+    }
+    request({
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer {${token}}`
+        },
+        url: 'https://api.line.me/v2/bot/message/push',
+        method: 'POST',
+        body: data,
+        json: true
+    }, async function (err, res, body) {
+        if (err) console.log(err)
+        // if (res) {
+        //     console.log('success')
+        // }
+        if (body) console.log(body)
+    })
 
     res.status(200);
     res.send('success');
