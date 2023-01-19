@@ -381,7 +381,7 @@ async function reply(reply_token, type, userID) {
         reply_tmp = [imageList1()]
         // reply_tmp = [Warning()]
     } else if (type == 3) {
-        reply_tmp = [quickMenu()]
+        reply_tmp = [other()]
     } else if (type == 5) {
         reply_tmp = [datePicker()]
     } else if (type == 6) {
@@ -703,7 +703,7 @@ function other() {
 
     let data = {
         type: 'text',
-        text: `ติดต่อสอบถามได้ที่ 096-978-3574 `
+        text: `ติดต่อสอบถามได้ที่ 055-682030 ถึง 42 ต่อ 2172 หรือ 080-2689978 `
     }
 
 
