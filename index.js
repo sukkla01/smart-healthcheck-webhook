@@ -1132,7 +1132,7 @@ function flexMultiDoctor2() {
     console.log(tname)
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor = [
-        { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
+        { image: '10.jpg', tname: 'รายงานผลการตรวจสุขภาพ' , dep: tname },
     ]
 
     let dataShow = []
@@ -1152,7 +1152,7 @@ function flexMultiDoctor2() {
                 {
                     "type": "uri",
                     "label": "รายละเอียด",
-                    "uri": url + item.image
+                    "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${vn}`
                 }
             ]
         })
