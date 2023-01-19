@@ -92,7 +92,7 @@ app.get('/confirm/:userid', async (req, res) => {
     }, async function (err, res, body) {
         if (err) console.log('error')
         if (res) {
-            console.log('success')
+            console.log(res)
             res.status(200).json({'status' : 'success'});
         }
         if (body) console.log(body)
