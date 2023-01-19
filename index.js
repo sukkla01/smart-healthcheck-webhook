@@ -1130,14 +1130,14 @@ const FlexResult = async (userID) => {
     let dataShow = []
 
     dataShow.push({
-        "thumbnailImageUrl": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg',
+        "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
         "imageBackgroundColor": "#FFFFFF",
         "title": 'รายงานผลการตรวจสุขภาพ',
-        "text": 'ssss',
+        "text": dep,
         "defaultAction": {
             "type": "uri",
             "label": "View detail",
-            "uri": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
+            "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
         },
         "actions": [
             {
