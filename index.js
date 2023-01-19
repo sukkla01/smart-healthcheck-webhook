@@ -1107,16 +1107,7 @@ const  FlexResult = async (userID) => {
     ORDER BY vstdate DESC
     limit 1     `
     try {
-        const response = db.query(sql).then((item) => {
-            // console.log(item[0])
-            // console.log(item.rows[0].tname)
-            tname = item.rows[0].tname
-            vn = item.rows[0].vn
-
-            return item.rows[0]
-
-
-        });
+        const response = await db.query(sql)
         console.log(response)
         // if (response.rows.length > 0) {
         //     response.rows.map((item, i) => {
