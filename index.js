@@ -1097,7 +1097,7 @@ function flexMultiDoctor2() {
 
 
 function FlexResult(userID) {
-
+    console.log(userID)
     let tname = ''
     let vn = ''
     let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
@@ -1109,6 +1109,7 @@ function FlexResult(userID) {
     limit 1     `
     try {
         const response = db.query(sql);
+        console.log(response)
         if (response.rows.length > 0) {
             response.rows.map((item, i) => {
                 console.log(item)
