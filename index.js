@@ -101,7 +101,7 @@ app.post('/confirm', async (req, res) => {
     })
 
     res.status(200);
-    res.send('None shall pass');
+    res.send('success');
     
 
 })
