@@ -79,7 +79,7 @@ app.post('/webhook', (req, res) => {
         console.log(req.body.events[0])
     }
 
-    console.log(userId)
+
     if (message == 'ตรวจสอบผลการตรวจ') {
         reply(reply_token, 1,userId)
 
@@ -371,15 +371,14 @@ function createImage(data) {
 // }
 
 // ตอบ reply
-async function reply(reply_token, type, userId) {
+async function reply(reply_token, type, date) {
     let headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer {${token}}`
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [flexResult(userId)]
-        console.log('result')
+        reply_tmp = [FlexResult()]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1(), imageList2(), imageList3()]
@@ -892,35 +891,15 @@ async function createImageDoctor(tdate) {
 }
 
 // health check
-async function flexResult(userID) {
-    console.log(userID + '-------- 896')
-    let tname =''
-    let vn =''
-    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
-    FROM healthcheck_register r
-    LEFT JOIN patient p ON p.cid = r.cid
-    LEFT JOIN ovst o ON o.hn = p.hn
-    WHERE user_id = '${userID}'
-    ORDER BY vstdate DESC
-    limit 1     `
-    const response = await db.query(sql);
-    if (response.rows.length > 0) {
-        response.rows.map((item, i) => {
-            console.log(item)
-            // createImage(item)
-            tname = item.tname
-            vn = item.vn
-        })
-    }
+function flexResult() {
 
-    let url = 'https://api-smart-healthcheck.diligentsoftinter.com/'
+    let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor =[
-        { image : 'result.png',tname: 'รายงานผลการตรวจสุขภาพ' ,dep : tname },
+        { image : '.jpg',tname: 'รายงานผลการตรวจสุขภาพ' ,dep : 'สามารถเข้าดูรายละเอียดได้ด้านล่าง' },
         
     ]
 
     let dataShow = []
-    console.log(dataDoctor + '-------- 923')
 
     dataDoctor.map((item,i)=>{
         dataShow.push({
@@ -937,7 +916,7 @@ async function flexResult(userID) {
                 {
                     "type": "uri",
                     "label": "รายละเอียด",
-                    "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${vn}`
+                    "uri": url + item.image
                 }
             ]
         })
@@ -954,7 +933,7 @@ async function flexResult(userID) {
             "imageSize": "cover"
         }
     }
-    console.log(data)
+
     return data
 }
 ///
@@ -1115,6 +1094,59 @@ function flexMultiDoctor2() {
 
     return data
 }
+
+
+function FlexResult() {
+
+    let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
+    let dataDoctor =[
+        { image : '10.jpg',tname: 'นพ.กุศล ทองอรุณศรี' ,dep : 'จักษุแพทย์' },
+        { image : '5.jpg',tname: 'นพ.รณชัย พูลล้น' ,dep : 'ศัลยแพทย์' },
+        { image : '6.jpg',tname: 'พญ.สุจิตติ โชคไชยกุล' ,dep : 'ศัลยแพทย์' },
+        { image : '7.jpg',tname: 'พญ.ภัทฐิชา ภิญโยสวัสดิ์สกุล' ,dep : 'จักษุแพทย์' },
+        { image : '8.jpg',tname: 'นพ.นาวิน ศักดาเดช' ,dep : 'สูติแพทย์' },
+        { image : '9.jpg',tname: 'นพ.นรุตม์ชัย พัฒนะดำรงชัย' ,dep : 'อายุรกรรม' },
+        
+    ]
+
+    let dataShow = []
+
+    dataDoctor.map((item,i)=>{
+        dataShow.push({
+            "thumbnailImageUrl": url + item.image,
+            "imageBackgroundColor": "#FFFFFF",
+            "title": item.tname,
+            "text": item.dep,
+            "defaultAction": {
+                "type": "uri",
+                "label": "View detail",
+                "uri": url + item.image
+            },
+            "actions": [
+                {
+                    "type": "uri",
+                    "label": "รายละเอียด",
+                    "uri": url + item.image
+                }
+            ]
+        })
+    })
+
+
+    let data = {
+        "type": "template",
+        "altText": "this is a carousel template",
+        "template": {
+            "type": "carousel",
+            "columns": dataShow,
+            "imageAspectRatio": "rectangle",
+            "imageSize": "cover"
+        }
+    }
+
+    return data
+}
+
 
 function flexMulti() {
     let data = {
