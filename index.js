@@ -1141,7 +1141,7 @@ function FlexResult(userID) {
         "thumbnailImageUrl": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg',
         "imageBackgroundColor": "#FFFFFF",
         "title": 'รายงานผลการตรวจสุขภาพ',
-        "text": tname,
+        "text": 'ssss',
         "defaultAction": {
             "type": "uri",
             "label": "View detail",
