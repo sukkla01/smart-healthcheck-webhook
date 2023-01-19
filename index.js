@@ -100,8 +100,9 @@ app.post('/confirm', async (req, res) => {
         if (body) console.log(body)
     })
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(200).json({ 'status':'sucess' });
+    res.status(200);
+    res.send('None shall pass');
+    
 
 })
 
