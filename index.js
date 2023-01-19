@@ -502,3 +502,11 @@ const FlexResult = async (userID) => {
 }
 
 
+function imageList1() {
+    let data = {
+        "type": "image",
+        "originalContentUrl": `https://api-smart-healthcheck.diligentsoftinter.com/program.jpg`,
+        "previewImageUrl": `https://api-smart-healthcheck.diligentsoftinter.com/program.jpg`
+    }
+    return data
+}
