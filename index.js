@@ -1110,7 +1110,10 @@ function flexMultiDoctor2() {
     try {
         const response =  db.query(sql).then((item)=>{
             console.log(item[0])
-            console.log(item.rows)
+            console.log(item.rows[0].tname)
+            tname = item.rows[0].tname
+            vn = item.rows[0].vn
+
 
         });
         // console.log(response)
@@ -1126,7 +1129,7 @@ function flexMultiDoctor2() {
         console.log(error)
     }
 
-
+    console.log(tname)
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor = [
         { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
