@@ -1108,32 +1108,14 @@ const FlexResult = async (userID) => {
     limit 1     `
 
     const response = await db.query(sql)
-    console.log(response.rows[0])
-    console.log(response.rows[0].tname)
-    console.log(response.rows[0].vn)
-    // if (response.rows.length > 0) {
-    //     response.rows.map((item, i) => {
-    //         console.log(item)
-    //         // createImage(item)
-    //         tname = item.tname
-    //         vn = item.vn
-    //     })
-    // }
-
-
-    console.log(tname + '-------')
-    let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
-    let dataDoctor = [
-        { image: '10.jpg', tname: 'รายงานผลการตรวจสุขภาพ', dep: response.rows[0].tname },
-    ]
-
+  
     let dataShow = []
 
     dataShow.push({
         "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
         "imageBackgroundColor": "#FFFFFF",
         "title": 'รายงานผลการตรวจสุขภาพ',
-        "text": dep,
+        "text": response.rows[0].tname,
         "defaultAction": {
             "type": "uri",
             "label": "View detail",
