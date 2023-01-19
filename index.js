@@ -1126,7 +1126,7 @@ const  FlexResult = async (userID) => {
     console.log(tname + '-------')
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor = [
-        { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
+        { image: '10.jpg', tname: 'รายงานผลการตรวจสุขภาพ', dep: response.rows[0].tname },
     ]
 
     let dataShow = []
@@ -1145,7 +1145,7 @@ const  FlexResult = async (userID) => {
             {
                 "type": "uri",
                 "label": "รายละเอียด",
-                "uri": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
+                "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
             }
         ]
     })
