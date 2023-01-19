@@ -19,28 +19,28 @@ const ping = require('ping');
 const token = 'MO75iPVFp8P28S6Jksl0VlcFLate/izyOFOWgd5DeuvJo9692NGek0hrbyclgb0cDl+ZaASziDr5+bv2c3LRMIECTm+gCExZkfzvOUuxUtdj4YIWJcrN89L1Ad39iMF/7wmOQRPdj1mKt01/l151ZgdB04t89/1O/w1cDnyilFU='
 
 //reply
-app.get('/confirm/:userid/:vn', async (req, res) => {
+app.get('/confirm/:userid', async (req, res) => {
     let userid = req.params.userid
     let vn = req.params.vn
     let dataQuery
-    let sql = `SELECT hn,nextdate,r.queue,name 
-    FROM diligent_queue_reserve   r
-    LEFT JOIN diligent_queue_dep d ON d.id = r.dep::int
-    WHERE vn_reserve = '${vn}'      `
-    const response = await db.query(sql);
-    if (response.rows.length > 0) {
-        dataQuery = response.rows
-    }
+    // let sql = `SELECT hn,nextdate,r.queue,name 
+    // FROM diligent_queue_reserve   r
+    // LEFT JOIN diligent_queue_dep d ON d.id = r.dep::int
+    // WHERE vn_reserve = '${vn}'      `
+    // const response = await db.query(sql);
+    // if (response.rows.length > 0) {
+    //     dataQuery = response.rows
+    // }
 
 
-    let date = moment(dataQuery[0].nextdate).add(543, 'year').format('LL')
+    // let date = moment(dataQuery[0].nextdate).add(543, 'year').format('LL')
 
     let data = {
         to: userid,
         messages: [
             {
                 type: 'text',
-                text: `จองเรียบร้อยแล้ว   \nhn:${dataQuery[0].hn} \nวันที่นัด : ${date} \nแผนก : ${dataQuery[0].name} \nคิวที่ : ${dataQuery[0].queue}  \n***กรุณาเข้าเมนู ข้อมูลรายการนัด `
+                text: `test `
             }
         ]
     }
@@ -64,6 +64,7 @@ app.get('/confirm/:userid/:vn', async (req, res) => {
     res.sendStatus(200)
 
 })
+
 app.post('/webhook', (req, res) => {
     let message = ''
     let tdate = ''
