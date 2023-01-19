@@ -1110,7 +1110,7 @@ function flexMultiDoctor2() {
     try {
         const response =  db.query(sql).then((item)=>{
             console.log(item[0])
-            console.log(item)
+            console.log(item.rows)
 
         });
         // console.log(response)
