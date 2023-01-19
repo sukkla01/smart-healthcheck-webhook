@@ -378,7 +378,7 @@ async function reply(reply_token, type, userID) {
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [FlexResult(userID)]
+        reply_tmp = [ await FlexResult(userID)]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1(), imageList2(), imageList3()]
@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
-const  FlexResult =  (userID) => {
+const  FlexResult = async (userID) => {
     let tname = ''
     let vn = ''
     let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
