@@ -371,14 +371,14 @@ function createImage(data) {
 // }
 
 // ตอบ reply
-async function reply(reply_token, type, date) {
+async function reply(reply_token, type, userId) {
     let headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer {${token}}`
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [videoV1(),flexMultiDoctor(),flexMultiDoctor2()]
+        reply_tmp = [flexResult(userId)]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1(), imageList2(), imageList3()]
@@ -891,11 +891,30 @@ async function createImageDoctor(tdate) {
 }
 
 // health check
-function flexResult() {
+async function flexResult(userID) {
 
-    let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
+    let tname =''
+    let vn =''
+    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
+    FROM healthcheck_register r
+    LEFT JOIN patient p ON p.cid = r.cid
+    LEFT JOIN ovst o ON o.hn = p.hn
+    WHERE user_id = '${userID}'
+    ORDER BY vstdate DESC
+    limit 1     `
+    const response = await db.query(sql);
+    if (response.rows.length > 0) {
+        response.rows.map((item, i) => {
+            console.log(item)
+            // createImage(item)
+            tname = item.tname
+            vn = item.vn
+        })
+    }
+
+    let url = 'https://api-smart-healthcheck.diligentsoftinter.com/'
     let dataDoctor =[
-        { image : '.jpg',tname: 'รายงานผลการตรวจสุขภาพ' ,dep : 'สามารถเข้าดูรายละเอียดได้ด้านล่าง' },
+        { image : 'result.png',tname: 'รายงานผลการตรวจสุขภาพ' ,dep : tname },
         
     ]
 
@@ -916,7 +935,7 @@ function flexResult() {
                 {
                     "type": "uri",
                     "label": "รายละเอียด",
-                    "uri": url + item.image
+                    "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${vn}`
                 }
             ]
         })
