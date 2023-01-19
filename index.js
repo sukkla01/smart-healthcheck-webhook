@@ -891,7 +891,7 @@ async function createImageDoctor(tdate) {
 }
 
 // health check
-function flexResult() {
+function flexResultxxxx() {
 
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor =[
@@ -1096,17 +1096,30 @@ function flexMultiDoctor2() {
 }
 
 
-function FlexResult() {
+async function FlexResult() {
+
+    let tname =''
+    let vn =''
+    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
+    FROM healthcheck_register r
+    LEFT JOIN patient p ON p.cid = r.cid
+    LEFT JOIN ovst o ON o.hn = p.hn
+    WHERE user_id = '${userID}'
+    ORDER BY vstdate DESC
+    limit 1     `
+    const response = await db.query(sql);
+    if (response.rows.length > 0) {
+        response.rows.map((item, i) => {
+            console.log(item)
+            // createImage(item)
+            tname = item.tname
+            vn = item.vn
+        })
+    }
 
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor =[
         { image : '10.jpg',tname: 'นพ.กุศล ทองอรุณศรี' ,dep : 'จักษุแพทย์' },
-        { image : '5.jpg',tname: 'นพ.รณชัย พูลล้น' ,dep : 'ศัลยแพทย์' },
-        { image : '6.jpg',tname: 'พญ.สุจิตติ โชคไชยกุล' ,dep : 'ศัลยแพทย์' },
-        { image : '7.jpg',tname: 'พญ.ภัทฐิชา ภิญโยสวัสดิ์สกุล' ,dep : 'จักษุแพทย์' },
-        { image : '8.jpg',tname: 'นพ.นาวิน ศักดาเดช' ,dep : 'สูติแพทย์' },
-        { image : '9.jpg',tname: 'นพ.นรุตม์ชัย พัฒนะดำรงชัย' ,dep : 'อายุรกรรม' },
-        
     ]
 
     let dataShow = []
