@@ -1108,7 +1108,9 @@ const  FlexResult = async (userID) => {
     limit 1     `
     try {
         const response = await db.query(sql)
-        console.log(response)
+        console.log(response.rows[0])
+        console.log(response.rows[0].tname)
+        console.log(response.rows[0].vn)
         // if (response.rows.length > 0) {
         //     response.rows.map((item, i) => {
         //         console.log(item)
