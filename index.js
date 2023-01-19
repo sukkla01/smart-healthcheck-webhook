@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
-function FlexResult(userID) {
+async function FlexResult(userID) {
     console.log(userID)
     let tname = ''
     let vn = ''
@@ -1108,7 +1108,7 @@ function FlexResult(userID) {
     ORDER BY vstdate DESC
     limit 1     `
     try {
-        const response = db.query(sql);
+        const response = await db.query(sql);
         console.log(response)
         if (response.rows.length > 0) {
             response.rows.map((item, i) => {
