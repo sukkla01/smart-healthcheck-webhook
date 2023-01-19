@@ -81,7 +81,7 @@ app.post('/webhook', (req, res) => {
 
 
     if (message == 'ตรวจสอบผลการตรวจ') {
-        reply(reply_token, 1,userId)
+        reply(reply_token, 1, userId)
 
     } else if (message == 'ตรวจสอบผลการตรวจ') {
         console.log('xx')
@@ -101,19 +101,19 @@ app.get('/test2', async (req, res) => {
 
 
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
-    let dataDoctor =[
-        { image : '1.jpg',tname: 'พญ.กันต์กนก อัตถวิบูลย์' ,dep : 'แพทย์เฉพาะทาง หูคอจมูก' },
-        { image : '2.jpg',tname: 'นพ.ธีรเศรษฐ์ บัณฑุชัย' ,dep : 'แพทย์เฉพาะทาง ออร์โธปิดิกส์' },
-        { image : '3.jpg',tname: 'พญ.ลลิตา โฆษตวรกิจกุล' ,dep : 'สูติแพทย์' },
-        { image : '4.jpg',tname: 'พญ.ปิยธิดา ภุมรา' ,dep : 'สูติแพทย์' },
-        { image : '5.jpg',tname: 'นพ.รณชัย พูลล้น' ,dep : 'ศัลยแพทย์' },
-        { image : '6.jpg',tname: 'พญ.สุจิตติ โชคไชยกุล' ,dep : 'ศัลยแพทย์' },
-        { image : '7.jpg',tname: 'พญ.ภัทฐิชา ภิญโยสวัสดิ์สกุล' ,dep : 'จักษุแพทย์' },
+    let dataDoctor = [
+        { image: '1.jpg', tname: 'พญ.กันต์กนก อัตถวิบูลย์', dep: 'แพทย์เฉพาะทาง หูคอจมูก' },
+        { image: '2.jpg', tname: 'นพ.ธีรเศรษฐ์ บัณฑุชัย', dep: 'แพทย์เฉพาะทาง ออร์โธปิดิกส์' },
+        { image: '3.jpg', tname: 'พญ.ลลิตา โฆษตวรกิจกุล', dep: 'สูติแพทย์' },
+        { image: '4.jpg', tname: 'พญ.ปิยธิดา ภุมรา', dep: 'สูติแพทย์' },
+        { image: '5.jpg', tname: 'นพ.รณชัย พูลล้น', dep: 'ศัลยแพทย์' },
+        { image: '6.jpg', tname: 'พญ.สุจิตติ โชคไชยกุล', dep: 'ศัลยแพทย์' },
+        { image: '7.jpg', tname: 'พญ.ภัทฐิชา ภิญโยสวัสดิ์สกุล', dep: 'จักษุแพทย์' },
     ]
 
     let dataShow = []
 
-    dataDoctor.map((item,i)=>{
+    dataDoctor.map((item, i) => {
         dataShow.push({
             "thumbnailImageUrl": url + item.image,
             "imageBackgroundColor": "#FFFFFF",
@@ -894,14 +894,14 @@ async function createImageDoctor(tdate) {
 function flexResultxxxx() {
 
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
-    let dataDoctor =[
-        { image : '.jpg',tname: 'รายงานผลการตรวจสุขภาพ' ,dep : 'สามารถเข้าดูรายละเอียดได้ด้านล่าง' },
-        
+    let dataDoctor = [
+        { image: '.jpg', tname: 'รายงานผลการตรวจสุขภาพ', dep: 'สามารถเข้าดูรายละเอียดได้ด้านล่าง' },
+
     ]
 
     let dataShow = []
 
-    dataDoctor.map((item,i)=>{
+    dataDoctor.map((item, i) => {
         dataShow.push({
             "thumbnailImageUrl": url + item.image,
             "imageBackgroundColor": "#FFFFFF",
@@ -994,21 +994,21 @@ function videoV1() {
 function flexMultiDoctor() {
 
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
-    let dataDoctor =[
+    let dataDoctor = [
         // { image : '1.jpg',tname: 'พญ.กันต์กนก อัตถวิบูลย์' ,dep : 'แพทย์เฉพาะทาง หูคอจมูก' },
-        { image : 'main.jpg',tname: 'คลินิกพิเศษ' ,dep : 'คลินิกพิเศษเฉพาะทางนอกเวลาราชการ' },
-        { image : '12.jpg',tname: 'นพ.จุมภฎ โสตถิถาวร' ,dep : 'แพทย์เฉพาะทาง ระบบทางเดินปัสสาวะ' },
-        { image : '11.jpg',tname: 'นพ.วรมิฎฐ์ ซื่อสัจจพงษ์' ,dep : 'แพทย์เฉพาะทาง ออร์โธปิดิกส์' },
-        { image : '2.jpg',tname: 'นพ.ธีรเศรษฐ์ บัณฑุชัย' ,dep : 'แพทย์เฉพาะทาง ออร์โธปิดิกส์' },
-        { image : '3.jpg',tname: 'พญ.ลลิตา โฆษตวรกิจกุล' ,dep : 'สูติแพทย์' },
-        { image : '4.jpg',tname: 'พญ.ปิยธิดา ภุมรา' ,dep : 'สูติแพทย์' },
-       
+        { image: 'main.jpg', tname: 'คลินิกพิเศษ', dep: 'คลินิกพิเศษเฉพาะทางนอกเวลาราชการ' },
+        { image: '12.jpg', tname: 'นพ.จุมภฎ โสตถิถาวร', dep: 'แพทย์เฉพาะทาง ระบบทางเดินปัสสาวะ' },
+        { image: '11.jpg', tname: 'นพ.วรมิฎฐ์ ซื่อสัจจพงษ์', dep: 'แพทย์เฉพาะทาง ออร์โธปิดิกส์' },
+        { image: '2.jpg', tname: 'นพ.ธีรเศรษฐ์ บัณฑุชัย', dep: 'แพทย์เฉพาะทาง ออร์โธปิดิกส์' },
+        { image: '3.jpg', tname: 'พญ.ลลิตา โฆษตวรกิจกุล', dep: 'สูติแพทย์' },
+        { image: '4.jpg', tname: 'พญ.ปิยธิดา ภุมรา', dep: 'สูติแพทย์' },
+
         // { image : '13.jpg',tname: 'พญ.กันต์กนก อัตถวิบูลย์' ,dep : 'หูคอจมูก' },
     ]
 
     let dataShow = []
 
-    dataDoctor.map((item,i)=>{
+    dataDoctor.map((item, i) => {
         dataShow.push({
             "thumbnailImageUrl": url + item.image,
             "imageBackgroundColor": "#FFFFFF",
@@ -1047,19 +1047,19 @@ function flexMultiDoctor() {
 function flexMultiDoctor2() {
 
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
-    let dataDoctor =[
-        { image : '10.jpg',tname: 'นพ.กุศล ทองอรุณศรี' ,dep : 'จักษุแพทย์' },
-        { image : '5.jpg',tname: 'นพ.รณชัย พูลล้น' ,dep : 'ศัลยแพทย์' },
-        { image : '6.jpg',tname: 'พญ.สุจิตติ โชคไชยกุล' ,dep : 'ศัลยแพทย์' },
-        { image : '7.jpg',tname: 'พญ.ภัทฐิชา ภิญโยสวัสดิ์สกุล' ,dep : 'จักษุแพทย์' },
-        { image : '8.jpg',tname: 'นพ.นาวิน ศักดาเดช' ,dep : 'สูติแพทย์' },
-        { image : '9.jpg',tname: 'นพ.นรุตม์ชัย พัฒนะดำรงชัย' ,dep : 'อายุรกรรม' },
-        
+    let dataDoctor = [
+        { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
+        { image: '5.jpg', tname: 'นพ.รณชัย พูลล้น', dep: 'ศัลยแพทย์' },
+        { image: '6.jpg', tname: 'พญ.สุจิตติ โชคไชยกุล', dep: 'ศัลยแพทย์' },
+        { image: '7.jpg', tname: 'พญ.ภัทฐิชา ภิญโยสวัสดิ์สกุล', dep: 'จักษุแพทย์' },
+        { image: '8.jpg', tname: 'นพ.นาวิน ศักดาเดช', dep: 'สูติแพทย์' },
+        { image: '9.jpg', tname: 'นพ.นรุตม์ชัย พัฒนะดำรงชัย', dep: 'อายุรกรรม' },
+
     ]
 
     let dataShow = []
 
-    dataDoctor.map((item,i)=>{
+    dataDoctor.map((item, i) => {
         dataShow.push({
             "thumbnailImageUrl": url + item.image,
             "imageBackgroundColor": "#FFFFFF",
@@ -1098,15 +1098,38 @@ function flexMultiDoctor2() {
 
 function FlexResult() {
 
-    
+    let tname = ''
+    let vn = ''
+    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
+    FROM healthcheck_register r
+    LEFT JOIN patient p ON p.cid = r.cid
+    LEFT JOIN ovst o ON o.hn = p.hn
+    WHERE user_id = '${userID}'
+    ORDER BY vstdate DESC
+    limit 1     `
+    try {
+        const response = db.query(sql);
+        if (response.rows.length > 0) {
+            response.rows.map((item, i) => {
+                console.log(item)
+                // createImage(item)
+                tname = item.tname
+                vn = item.vn
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
-    let dataDoctor =[
-        { image : '10.jpg',tname: 'นพ.กุศล ทองอรุณศรี' ,dep : 'จักษุแพทย์' },
+    let dataDoctor = [
+        { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
     ]
 
     let dataShow = []
 
-    dataDoctor.map((item,i)=>{
+    dataDoctor.map((item, i) => {
         dataShow.push({
             "thumbnailImageUrl": url + item.image,
             "imageBackgroundColor": "#FFFFFF",
