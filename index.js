@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
- function FlexResult(userID) {
+function FlexResult(userID) {
     console.log(userID)
     let tname = ''
     let vn = ''
@@ -1108,7 +1108,7 @@ function flexMultiDoctor2() {
     ORDER BY vstdate DESC
     limit 1     `
     try {
-        const response =  db.query(sql).then((item)=>{
+        const response = db.query(sql).then((item) => {
             console.log(item[0])
             console.log(item.rows[0].tname)
             tname = item.rows[0].tname
@@ -1137,27 +1137,24 @@ function flexMultiDoctor2() {
 
     let dataShow = []
 
-    dataDoctor.map((item, i) => {
-        dataShow.push({
-            "thumbnailImageUrl": url + item.image,
-            "imageBackgroundColor": "#FFFFFF",
-            "title": item.tname,
-            "text": item.dep,
-            "defaultAction": {
+    dataShow.push({
+        "thumbnailImageUrl": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg',
+        "imageBackgroundColor": "#FFFFFF",
+        "title": 'นพ.กุศล ทองอรุณศรี',
+        "text": 'จักษุแพทย์',
+        "defaultAction": {
+            "type": "uri",
+            "label": "View detail",
+            "uri":'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
+        },
+        "actions": [
+            {
                 "type": "uri",
-                "label": "View detail",
-                "uri": url + item.image
-            },
-            "actions": [
-                {
-                    "type": "uri",
-                    "label": "รายละเอียด",
-                    "uri": url + item.image
-                }
-            ]
-        })
+                "label": "รายละเอียด",
+                "uri": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg'
+            }
+        ]
     })
-
 
     let data = {
         "type": "template",
