@@ -93,15 +93,15 @@ app.post('/confirm', async (req, res) => {
         body: data,
         json: true
     }, async function (err, res, body) {
-        if (err) console.log('error')
-        if (res) {
-            console.log('success')
-        }
+        if (err) console.log(err)
+        // if (res) {
+        //     console.log('success')
+        // }
         if (body) console.log(body)
     })
 
     res.setHeader('Content-Type', 'application/json');
-    res.sendStatus(200).json({'status' : 'success'});
+    res.send(200).json({ 'status':'sucess' });
 
 })
 
