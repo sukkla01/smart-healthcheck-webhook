@@ -1132,7 +1132,7 @@ function flexMultiDoctor2() {
     console.log(tname)
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor = [
-        { image: '10.jpg', tname: 'รายงานผลการตรวจสุขภาพ' , dep: tname },
+        { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
     ]
 
     let dataShow = []
