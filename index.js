@@ -371,14 +371,14 @@ function createImage(data) {
 // }
 
 // ตอบ reply
-async function reply(reply_token, type, date) {
+async function reply(reply_token, type, userID) {
     let headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer {${token}}`
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [FlexResult()]
+        reply_tmp = [FlexResult(userID)]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1(), imageList2(), imageList3()]
@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
-function FlexResult() {
+function FlexResult(userID) {
 
     let tname = ''
     let vn = ''
