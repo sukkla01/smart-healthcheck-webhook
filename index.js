@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
-async function FlexResult(userID) {
+ function FlexResult(userID) {
     console.log(userID)
     let tname = ''
     let vn = ''
@@ -1108,16 +1108,19 @@ async function FlexResult(userID) {
     ORDER BY vstdate DESC
     limit 1     `
     try {
-        const response = await db.query(sql);
-        console.log(response)
-        if (response.rows.length > 0) {
-            response.rows.map((item, i) => {
-                console.log(item)
-                // createImage(item)
-                tname = item.tname
-                vn = item.vn
-            })
-        }
+        const response =  db.query(sql).then((item)=>{
+            console.log(item)
+
+        });
+        // console.log(response)
+        // if (response.rows.length > 0) {
+        //     response.rows.map((item, i) => {
+        //         console.log(item)
+        //         // createImage(item)
+        //         tname = item.tname
+        //         vn = item.vn
+        //     })
+        // }
     } catch (error) {
         console.log(error)
     }
