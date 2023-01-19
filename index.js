@@ -97,6 +97,7 @@ app.get('/confirm/:userid', async (req, res) => {
         if (body) console.log(body)
     })
 
+    res.setHeader('Content-Type', 'application/json');
     res.sendStatus(200).json({'status' : 'success'});
 
 })
