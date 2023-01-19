@@ -1129,7 +1129,7 @@ function FlexResult(userID) {
         console.log(error)
     }
 
-    console.log(tname)
+    console.log(tname + '-------')
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor = [
         { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
