@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
-function FlexResult(userID) {
+const  FlexResult = async (userID) => {
     console.log(userID)
     let tname = ''
     let vn = ''
