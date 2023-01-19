@@ -19,10 +19,13 @@ const ping = require('ping');
 const token = 'MO75iPVFp8P28S6Jksl0VlcFLate/izyOFOWgd5DeuvJo9692NGek0hrbyclgb0cDl+ZaASziDr5+bv2c3LRMIECTm+gCExZkfzvOUuxUtdj4YIWJcrN89L1Ad39iMF/7wmOQRPdj1mKt01/l151ZgdB04t89/1O/w1cDnyilFU='
 
 //reply
-app.get('/confirm/:userid', async (req, res) => {
-    let userid = req.params.userid
-    let vn = req.params.vn
-    let dataQuery
+app.post('/confirm', async (req, res) => {
+    // let userid = req.params.userid
+    // let vn = req.params.vn
+    // let dataQuery
+
+    let { body } = req
+    console.log(body)
     // let sql = `SELECT hn,nextdate,r.queue,name 
     // FROM diligent_queue_reserve   r
     // LEFT JOIN diligent_queue_dep d ON d.id = r.dep::int
@@ -38,7 +41,7 @@ app.get('/confirm/:userid', async (req, res) => {
     FROM healthcheck_register r
     LEFT JOIN patient p ON p.cid = r.cid
     LEFT JOIN ovst o ON o.hn = p.hn
-    WHERE user_id = '${userid}'
+    WHERE user_id = '${body.userid}'
     ORDER BY vstdate DESC
     limit 1     `
 
