@@ -1131,8 +1131,8 @@ const  FlexResult =  (userID) => {
     }
 
 
-    const sendBot =(data)=>{
-        console.log(data.tname + '-------')
+    const sendBot =(value)=>{
+        console.log(value.tname + '-------')
         let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
         let dataDoctor = [
             { image: '10.jpg', tname: 'นพ.กุศล ทองอรุณศรี', dep: 'จักษุแพทย์' },
