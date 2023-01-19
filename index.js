@@ -1140,8 +1140,8 @@ function FlexResult(userID) {
     dataShow.push({
         "thumbnailImageUrl": 'https://api-queue-ss.diligentsoftinter.com/doctor/10.jpg',
         "imageBackgroundColor": "#FFFFFF",
-        "title": 'นพ.กุศล ทองอรุณศรี',
-        "text": 'จักษุแพทย์',
+        "title": 'รายงานผลการตรวจสุขภาพ',
+        "text": tname,
         "defaultAction": {
             "type": "uri",
             "label": "View detail",
