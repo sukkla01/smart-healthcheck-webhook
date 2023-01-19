@@ -69,7 +69,7 @@ app.post('/confirm', async (req, res) => {
     })
 
     let data = {
-        to: userid,
+        to: body.userid,
         messages: [
             {
                 "type": "template",
