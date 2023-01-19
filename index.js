@@ -79,9 +79,9 @@ app.post('/webhook', (req, res) => {
         console.log(req.body.events[0])
     }
 
-
+    console.log(userId)
     if (message == 'ตรวจสอบผลการตรวจ') {
-        reply(reply_token, 1)
+        reply(reply_token, 1,userId)
 
     } else if (message == 'ตรวจสอบผลการตรวจ') {
         console.log('xx')
@@ -89,14 +89,6 @@ app.post('/webhook', (req, res) => {
         reply(reply_token, 2, '')
     } else if (message == 'เพิ่มเติม') {
         reply(reply_token, 3, '')
-    } else if (message == 'จำนวนการจอง') {
-        reply(reply_token, 5, '')
-    } else if (message == 'date') {
-        reply(reply_token, 6, tdate)
-    } else if (message == 'ข้อมูลส่วนตัว') {
-        reply(reply_token, 7, userId)
-    } else if (message == 'แจ้งปัญหา') {
-        reply(reply_token, 8, userId)
     } else {
         reply(reply_token, 4, '')
     }
@@ -897,6 +889,54 @@ async function createImageDoctor(tdate) {
     });
 
 }
+
+// health check
+function flexResult() {
+
+    let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
+    let dataDoctor =[
+        { image : '.jpg',tname: 'รายงานผลการตรวจสุขภาพ' ,dep : 'สามารถเข้าดูรายละเอียดได้ด้านล่าง' },
+        
+    ]
+
+    let dataShow = []
+
+    dataDoctor.map((item,i)=>{
+        dataShow.push({
+            "thumbnailImageUrl": url + item.image,
+            "imageBackgroundColor": "#FFFFFF",
+            "title": item.tname,
+            "text": item.dep,
+            "defaultAction": {
+                "type": "uri",
+                "label": "View detail",
+                "uri": url + item.image
+            },
+            "actions": [
+                {
+                    "type": "uri",
+                    "label": "รายละเอียด",
+                    "uri": url + item.image
+                }
+            ]
+        })
+    })
+
+
+    let data = {
+        "type": "template",
+        "altText": "this is a carousel template",
+        "template": {
+            "type": "carousel",
+            "columns": dataShow,
+            "imageAspectRatio": "rectangle",
+            "imageSize": "cover"
+        }
+    }
+
+    return data
+}
+///
 
 function imageDoctor(tdate) {
 
