@@ -80,9 +80,10 @@ app.post('/webhook', (req, res) => {
     }
 
 
-    if (message == 'แนะนำแพทย์') {
+    if (message == 'ตรวจสอบผลการตรวจ') {
         reply(reply_token, 1)
-    } else if (message == 'ข้อมูลรายการค่ารักษา') {
+
+    } else if (message == 'ตรวจสอบผลการตรวจ') {
         console.log('xx')
 
         reply(reply_token, 2, '')
