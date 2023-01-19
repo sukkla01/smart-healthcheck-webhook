@@ -6,7 +6,7 @@ const db = require('./config')
 const moment = require('moment')
 moment.locale('th')
 const path = require("path")
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5004
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const cron = require('node-cron')
