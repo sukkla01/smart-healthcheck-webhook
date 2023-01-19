@@ -82,11 +82,8 @@ app.post('/webhook', (req, res) => {
 
     if (message == 'ตรวจสอบผลการตรวจ') {
         reply(reply_token, 1, userId)
-
-    } else if (message == 'ตรวจสอบผลการตรวจ') {
-        console.log('xx')
-
-        reply(reply_token, 2, '')
+    } else if (message == 'โปรแกรมตรวจสุขภาพ') {
+        reply(reply_token, 2, userId)
     } else if (message == 'เพิ่มเติม') {
         reply(reply_token, 3, '')
     } else {
@@ -381,7 +378,7 @@ async function reply(reply_token, type, userID) {
         reply_tmp = [await FlexResult(userID)]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
-        reply_tmp = [imageList1(), imageList2(), imageList3()]
+        reply_tmp = [imageList1()]
         // reply_tmp = [Warning()]
     } else if (type == 3) {
         reply_tmp = [quickMenu()]
@@ -954,8 +951,8 @@ function imageDoctor(tdate) {
 function imageList1() {
     let data = {
         "type": "image",
-        "originalContentUrl": `https://linebot-swhospital.diligentsoftinter.com/images/list11.png`,
-        "previewImageUrl": `https://linebot-swhospital.diligentsoftinter.com/images/list11.png`
+        "originalContentUrl": `https://api-smart-healthcheck.diligentsoftinter.com/program.jpg`,
+        "previewImageUrl": `https://api-smart-healthcheck.diligentsoftinter.com/program.jpg`
     }
     return data
 }
@@ -1108,7 +1105,7 @@ const FlexResult = async (userID) => {
     limit 1     `
 
     const response = await db.query(sql)
-  
+
     let dataShow = []
 
     dataShow.push({
@@ -1124,7 +1121,7 @@ const FlexResult = async (userID) => {
         "actions": [
             {
                 "type": "uri",
-                "label": "รายละเอียด",
+                "label": "คลิกดูรายละเอียด",
                 "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
             }
         ]
