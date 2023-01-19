@@ -1096,7 +1096,7 @@ function flexMultiDoctor2() {
 }
 
 
-const  FlexResult = async (userID) => {
+const  FlexResult =  (userID) => {
     let tname = ''
     let vn = ''
     let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
