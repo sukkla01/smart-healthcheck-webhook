@@ -34,13 +34,49 @@ app.get('/confirm/:userid', async (req, res) => {
 
 
     // let date = moment(dataQuery[0].nextdate).add(543, 'year').format('LL')
+    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
+    FROM healthcheck_register r
+    LEFT JOIN patient p ON p.cid = r.cid
+    LEFT JOIN ovst o ON o.hn = p.hn
+    WHERE user_id = '${userid}'
+    ORDER BY vstdate DESC
+    limit 1     `
+
+    const response = await db.query(sql)
+
+    let dataShow = []
+
+    dataShow.push({
+        "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
+        "imageBackgroundColor": "#FFFFFF",
+        "title": 'รายงานผลการตรวจสุขภาพ',
+        "text": response.rows[0].tname,
+        "defaultAction": {
+            "type": "uri",
+            "label": "View detail",
+            "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
+        },
+        "actions": [
+            {
+                "type": "uri",
+                "label": "คลิกดูรายละเอียด",
+                "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
+            }
+        ]
+    })
 
     let data = {
         to: userid,
         messages: [
             {
-                type: 'text',
-                text: `test `
+                "type": "template",
+                "altText": "this is a carousel template",
+                "template": {
+                    "type": "carousel",
+                    "columns": dataShow,
+                    "imageAspectRatio": "rectangle",
+                    "imageSize": "cover"
+                }
             }
         ]
     }
