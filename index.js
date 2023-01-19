@@ -1096,27 +1096,9 @@ function flexMultiDoctor2() {
 }
 
 
-async function FlexResult() {
+function FlexResult() {
 
-    let tname =''
-    let vn =''
-    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
-    FROM healthcheck_register r
-    LEFT JOIN patient p ON p.cid = r.cid
-    LEFT JOIN ovst o ON o.hn = p.hn
-    WHERE user_id = '${userID}'
-    ORDER BY vstdate DESC
-    limit 1     `
-    const response = await db.query(sql);
-    if (response.rows.length > 0) {
-        response.rows.map((item, i) => {
-            console.log(item)
-            // createImage(item)
-            tname = item.tname
-            vn = item.vn
-        })
-    }
-
+    
     let url = 'https://api-queue-ss.diligentsoftinter.com/doctor/'
     let dataDoctor =[
         { image : '10.jpg',tname: 'นพ.กุศล ทองอรุณศรี' ,dep : 'จักษุแพทย์' },
