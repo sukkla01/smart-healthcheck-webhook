@@ -464,6 +464,8 @@ const FlexResult = async (userID) => {
 
     let dataShow = []
 
+    console.log(response)
+
     dataShow.push({
         "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
         "imageBackgroundColor": "#FFFFFF",
