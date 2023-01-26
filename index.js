@@ -28,7 +28,7 @@ app.post('/confirm', async (req, res) => {
 
     let { body } = req
     console.log(body)
-   
+
 
     let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
     FROM healthcheck_register r
@@ -98,7 +98,7 @@ app.post('/confirm', async (req, res) => {
 
     res.status(200);
     res.send('success');
-    
+
 
 })
 
@@ -466,37 +466,48 @@ const FlexResult = async (userID) => {
 
     console.log(response)
 
-    dataShow.push({
-        "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
-        "imageBackgroundColor": "#FFFFFF",
-        "title": 'รายงานผลการตรวจสุขภาพ',
-        "text": response.rows[0].tname,
-        "defaultAction": {
-            "type": "uri",
-            "label": "View detail",
-            "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
-        },
-        "actions": [
-            {
-                "type": "uri",
-                "label": "คลิกดูรายละเอียด",
-                "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
-            }
-        ]
-    })
 
-    let data = {
-        "type": "template",
-        "altText": "this is a carousel template",
-        "template": {
-            "type": "carousel",
-            "columns": dataShow,
-            "imageAspectRatio": "rectangle",
-            "imageSize": "cover"
+    if (response.rows.length == 0) {
+        let data = {
+            type: 'text',
+            text: `ยังไม่ได้ลงทะเบียน ติดต่อสอบถามได้ที่ 055-682030 ถึง 42 ต่อ 2172 หรือ 080-2689978  `
         }
+        return data
+    } else {
+        dataShow.push({
+            "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
+            "imageBackgroundColor": "#FFFFFF",
+            "title": 'รายงานผลการตรวจสุขภาพ',
+            "text": response.rows[0].tname,
+            "defaultAction": {
+                "type": "uri",
+                "label": "View detail",
+                "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
+            },
+            "actions": [
+                {
+                    "type": "uri",
+                    "label": "คลิกดูรายละเอียด",
+                    "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
+                }
+            ]
+        })
+
+        let data = {
+            "type": "template",
+            "altText": "this is a carousel template",
+            "template": {
+                "type": "carousel",
+                "columns": dataShow,
+                "imageAspectRatio": "rectangle",
+                "imageSize": "cover"
+            }
+        }
+
+        return data
     }
 
-    return data
+
 }
 
 
