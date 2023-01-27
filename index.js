@@ -160,7 +160,7 @@ async function reply(reply_token, type, userID) {
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [await FlexResult(userID),otherRate()]
+        reply_tmp = [await FlexResult(userID), await otherRate()]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1()]
