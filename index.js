@@ -160,7 +160,7 @@ async function reply(reply_token, type, userID) {
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [await FlexResult(userID)]
+        reply_tmp = [await FlexResult(userID),otherRate()]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1()]
@@ -491,7 +491,7 @@ const FlexResult = async (userID) => {
             "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
             "imageBackgroundColor": "#FFFFFF",
             "title": 'รายงานผลการตรวจสุขภาพ',
-            "text": response.rows[0].tname + ' **ท่านสามาร',
+            "text": response.rows[0].tname ,
             "defaultAction": {
                 "type": "uri",
                 "label": "View detail",
