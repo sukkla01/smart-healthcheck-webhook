@@ -160,7 +160,7 @@ async function reply(reply_token, type, userID) {
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [await FlexResult(userID)]
+        reply_tmp = [await FlexResult(userID),otherRate()]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1()]
@@ -436,6 +436,19 @@ const profile = async (userId) => {
     return data
 }
 
+function otherRate() {
+
+    let data = {
+        type: 'text',
+        text: `ประเมิณความพึงพอใจ \nhttps://forms.gle/GLd8riv1kqBd35Vh8 `
+    }
+
+
+
+    return data
+}
+
+
 function other() {
 
     let data = {
@@ -478,7 +491,7 @@ const FlexResult = async (userID) => {
             "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
             "imageBackgroundColor": "#FFFFFF",
             "title": 'รายงานผลการตรวจสุขภาพ',
-            "text": response.rows[0].tname,
+            "text": response.rows[0].tname + ' \n**ท่านสามารถดูรายงานฉบับสมบูรณ์ได้ภายหลังการตรวจสุขภาพไปแล้วประมาณ 1 สัปดาห์',
             "defaultAction": {
                 "type": "uri",
                 "label": "View detail",
