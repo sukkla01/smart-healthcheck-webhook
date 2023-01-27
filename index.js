@@ -491,7 +491,7 @@ const FlexResult = async (userID) => {
             "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
             "imageBackgroundColor": "#FFFFFF",
             "title": 'รายงานผลการตรวจสุขภาพ',
-            "text": response.rows[0].tname ,
+            "text": response.rows[0].tname + ' **ท่านสามาร',
             "defaultAction": {
                 "type": "uri",
                 "label": "View detail",
