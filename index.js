@@ -160,7 +160,7 @@ async function reply(reply_token, type, userID) {
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [await FlexResult(userID), await otherRate()]
+        reply_tmp = [await FlexResult(userID)]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1()]
@@ -440,7 +440,7 @@ function otherRate() {
 
     let data = {
         type: 'text',
-        text: `ประเมิณความพึงพอใจ \nhttps://forms.gle/GLd8riv1kqBd35Vh8 `
+        text: `ประเมิณความพึงพอใจ https://forms.gle/GLd8riv1kqBd35Vh8 `
     }
 
 
