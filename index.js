@@ -56,7 +56,7 @@ app.post('/confirm', async (req, res) => {
             {
                 "type": "uri",
                 "label": "คลิกดูรายละเอียด",
-                "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
+                "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5p12.php?vn=${response.rows[0].vn}`
             }
         ]
     })
@@ -512,7 +512,7 @@ const FlexResult = async (userID) => {
                 {
                     "type": "uri",
                     "label": "คลิกดูรายละเอียด",
-                    "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5.php?vn=${response.rows[0].vn}`
+                    "uri": `https://sw.srisangworn.go.th/webap/hosxp/reportHCA5p12.php?vn=${response.rows[0].vn}`
                 }
             ]
         })
