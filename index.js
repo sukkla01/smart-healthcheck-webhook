@@ -121,7 +121,7 @@ app.post('/oapp', async (req, res) => {
 
     const response = await db.query(sql)
 
-    console.log(response.rows)
+    console.log(moment(body.nextdate).format('YYYY-MM-DD'))
 
     let dataShow = []
 
@@ -177,7 +177,7 @@ app.post('/oapp', async (req, res) => {
     })
 
 
-    const resss = await db.query(`INSERT INTO healthcheck_send_oapp  values ('${body.hn}','${body.nextdate}')   `)
+    const resss = await db.query(`INSERT INTO healthcheck_send_oapp  values ('${body.hn}','${moment(body.nextdate).format('YYYY-MM-DD')}')   `)
 
     res.status(200);
     res.send('success');
