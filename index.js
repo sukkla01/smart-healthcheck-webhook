@@ -115,35 +115,37 @@ app.post('/oapp', async (req, res) => {
     FROM healthcheck_register r
     LEFT JOIN patient p ON p.cid = r.cid
     LEFT JOIN ovst o ON o.hn = p.hn
-    WHERE user_id = '${body.userid}'
+    WHERE user_id = '${body.user_id}'
     ORDER BY vstdate DESC
     limit 1     `
 
     const response = await db.query(sql)
 
+    console.log(response.rows)
+
     let dataShow = []
 
     dataShow.push({
-        "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
+        "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/oapp.jpg',
         "imageBackgroundColor": "#FFFFFF",
         "title": 'รายการนัดตรวจสุขภาพ',
         "text": response.rows[0].tname,
         "defaultAction": {
             "type": "uri",
             "label": "View detail",
-            "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
+            "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/oapp.jpg'
         },
         "actions": [
             {
                 "type": "uri",
-                "label": "คลิกดูรายละเอียด",
-                "uri": `https://liff.line.me/1657641026-AgWl6OOj?key=oapp-print`
+                "label": "คลิกดูใบนัด",
+                "uri": `https://smart-healthcheck.diligentsoftinter.com/oapp_print?oapp_id=${body.oapp_id}`
             }
         ]
     })
 
     let data = {
-        to: body.userid,
+        to: body.user_id,
         messages: [
             {
                 "type": "template",
