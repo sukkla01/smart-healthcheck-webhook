@@ -523,7 +523,7 @@ function otherRate() {
 
     let data = {
         type: 'text',
-        text: `แบบประเมิณความพึงพอใจ https://forms.gle/GLd8riv1kqBd35Vh8 `
+        text: `แบบประเมินความพึงพอใจ https://forms.gle/GLd8riv1kqBd35Vh8 `
     }
 
 
