@@ -101,6 +101,87 @@ app.post('/confirm', async (req, res) => {
 
 
 })
+//reply  oapp
+app.post('/oapp', async (req, res) => {
+    // let userid = req.params.userid
+    // let vn = req.params.vn
+    // let dataQuery
+
+    let { body } = req
+    console.log(body)
+
+
+    let sql = `SELECT concat(p.pname,p.fname,' ',p.lname)  AS tname,o.vn
+    FROM healthcheck_register r
+    LEFT JOIN patient p ON p.cid = r.cid
+    LEFT JOIN ovst o ON o.hn = p.hn
+    WHERE user_id = '${body.userid}'
+    ORDER BY vstdate DESC
+    limit 1     `
+
+    const response = await db.query(sql)
+
+    let dataShow = []
+
+    dataShow.push({
+        "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
+        "imageBackgroundColor": "#FFFFFF",
+        "title": 'รายการนัดตรวจสุขภาพ',
+        "text": response.rows[0].tname,
+        "defaultAction": {
+            "type": "uri",
+            "label": "View detail",
+            "uri": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png'
+        },
+        "actions": [
+            {
+                "type": "uri",
+                "label": "คลิกดูรายละเอียด",
+                "uri": `https://liff.line.me/1657641026-AgWl6OOj?key=oapp-print`
+            }
+        ]
+    })
+
+    let data = {
+        to: body.userid,
+        messages: [
+            {
+                "type": "template",
+                "altText": "this is a carousel template",
+                "template": {
+                    "type": "carousel",
+                    "columns": dataShow,
+                    "imageAspectRatio": "rectangle",
+                    "imageSize": "cover"
+                }
+            }
+        ]
+    }
+    request({
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer {${token}}`
+        },
+        url: 'https://api.line.me/v2/bot/message/push',
+        method: 'POST',
+        body: data,
+        json: true
+    }, async function (err, res, body) {
+        if (err) console.log(err)
+        // if (res) {
+        //     console.log('success')
+        // }
+        if (body) console.log(body)
+    })
+
+
+    const resss = await db.query(`INSERT INTO healthcheck_send_oapp  values ('${body.hn}','${body.nextdate}')   `)
+
+    res.status(200);
+    res.send('success');
+
+
+})
 
 app.post('/webhook', (req, res) => {
     let message = ''
@@ -160,7 +241,7 @@ async function reply(reply_token, type, userID) {
     }
     let reply_tmp
     if (type == 1) {
-        reply_tmp = [await FlexResult(userID),otherMessage(),otherRate()]
+        reply_tmp = [await FlexResult(userID), otherMessage(), otherRate()]
         // reply_tmp = [Warning()]
     } else if (type == 2) {
         reply_tmp = [imageList1()]
@@ -502,7 +583,7 @@ const FlexResult = async (userID) => {
             "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/result.png',
             "imageBackgroundColor": "#FFFFFF",
             "title": 'รายงานผลการตรวจสุขภาพ',
-            "text": response.rows[0].tname ,
+            "text": response.rows[0].tname,
             "defaultAction": {
                 "type": "uri",
                 "label": "View detail",
