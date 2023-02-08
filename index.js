@@ -128,7 +128,7 @@ app.post('/oapp', async (req, res) => {
     dataShow.push({
         "thumbnailImageUrl": 'https://api-smart-healthcheck.diligentsoftinter.com/oapp.jpg',
         "imageBackgroundColor": "#FFFFFF",
-        "title": 'รายการนัดตรวจสุขภาพ',
+        "title": 'รายการนัดตรวจติดตาม',
         "text": response.rows[0].tname,
         "defaultAction": {
             "type": "uri",
